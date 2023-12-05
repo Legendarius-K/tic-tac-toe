@@ -1,0 +1,52 @@
+:root {
+    --main-color: rgb(255, 255, 240);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background-color: rgb(20, 19, 19);
+    color: var(--main-color);
+    font-family: "Presstart";
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 5vw;
+}
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.play-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 50%;
+    aspect-ratio: 1/1;
+    align-content: center;
+}
+
+.box {
+    border: solid 5px var(--main-color);
+    display: inline;
+    /* height: 200px;
+    aspect-ratio: 1/1; */
+}

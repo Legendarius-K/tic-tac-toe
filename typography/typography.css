@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Rubik";
+    src: url('../fonts/Rubik.woff2');
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: url('../fonts/Rubik.woff');
+}
+
+@font-face {
+    font-family: "Presstart";
+    src: url('../fonts/Presstart/presstart.woff');
+}
+
+@font-face {
+    font-family: "Presstart";
+    src: url('../fonts/Presstart/presstart.woff2');
+}
