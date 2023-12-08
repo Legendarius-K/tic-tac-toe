@@ -119,9 +119,20 @@ let newRound = document.querySelector(".new-round");
 // let clicked = false;
 let player1Round = true;
 
+const resetBoard = () => {
+    boxes.forEach(box => {
+        box.disabled = false;
+        box.classList.remove("smiley");
+        box.classList.remove("skull");
+        box.classList.add("click");
+        result.textContent = "";
+    })    
+}
+
+
 const disableButtons = () => {
     if (result.textContent.includes("WINS!")) {
-        boxes.forEach(box = box => {
+        boxes.forEach(box => {
             box.disabled = true;
         })
     }
@@ -189,10 +200,7 @@ const skullClick = (e, box) => {
 
 
 
-
-const runGame = () => {
-
-    boxes.forEach(box => {
+boxes.forEach(box => {
 
         box.addEventListener("click", e => {
             if (player1Round === true) {
@@ -202,7 +210,8 @@ const runGame = () => {
             }    
         })
     })
-}
+
+newRound.addEventListener("click", resetBoard)
 
 
 
