@@ -107,7 +107,17 @@ let c1 = document.querySelector(".c1");
 let c2 = document.querySelector(".c2");
 let c3 = document.querySelector(".c3");
 
+
+let player1Count = 0;
+let player2Count = 0;
+let player1Score = document.querySelector(".player-1-score");
+let player2Score = document.querySelector(".player-2-score");
+
+
+
 let result = document.querySelector(".result");
+
+
 
 let ticCounter = 0;
 let clicked = false;
@@ -140,11 +150,10 @@ const checkWinner = symbol => {
         })
     }
 
-    if (result.textContent === `smiley wins!`) {
-        boxes.forEach(box = box => {
-            box.disabled = true;
-        })
-    }
+    // if (result.textContent === `smiley wins!`) {
+    //     player1Count++;
+    //     player1Score.innerHTML = player1Count;
+    // }
 
 } 
 
@@ -182,6 +191,9 @@ boxes.forEach(box => {
         } else if (player1Round === false) {
             skullClick(e, box);
         }
+
+        
+        // player2Score.textContent = player2Count;    
               
     })
 })
