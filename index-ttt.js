@@ -116,8 +116,16 @@ let player2Score = document.querySelector(".player-2-score");
 
 let result = document.querySelector(".result");
 let newRound = document.querySelector(".new-round");
-// let clicked = false;
+
+let player1Start = true;
 let player1Round = true;
+
+if (player1Start === true) {
+    player1Round = true;
+} else {
+    player1Round = false;
+}
+
 
 const resetBoard = () => {
     boxes.forEach(box => {
@@ -125,8 +133,10 @@ const resetBoard = () => {
         box.classList.remove("smiley");
         box.classList.remove("skull");
         box.classList.add("click");
-        result.textContent = "";
+        
     })    
+    result.textContent = "";
+    player1Start = !player1Start;
 }
 
 
@@ -170,6 +180,9 @@ const checkWinner = (symbol, callback, callback2) => {
         // result.textContent = "It's a TIE!";
     }
 
+    
+    
+
     callback()
     callback2();
     
@@ -182,7 +195,6 @@ const smileyClick = (e, box) => {
     e.target.classList.add("smiley")
     e.target.classList.remove("click")
     box.disabled = true;
-    // clicked = true;
     checkWinner("smiley", counter, disableButtons);
     const boxes = Array.from(document.querySelectorAll(".click"));
     player1Round = false;
@@ -192,7 +204,6 @@ const skullClick = (e, box) => {
     e.target.classList.add("skull")
     e.target.classList.remove("click")
     box.disabled = true;
-    // clicked = true;
     checkWinner("skull", counter, disableButtons);
     const boxes = Array.from(document.querySelectorAll(".click"));
     player1Round = true;
@@ -202,14 +213,14 @@ const skullClick = (e, box) => {
 
 boxes.forEach(box => {
 
-        box.addEventListener("click", e => {
-            if (player1Round === true) {
-                smileyClick(e, box);
-            } else if (player1Round === false) {
-                skullClick(e, box); 
-            }    
-        })
+    box.addEventListener("click", e => {
+        if (player1Round === true) {
+            smileyClick(e, box);
+        } else if (player1Round === false) {
+            skullClick(e, box); 
+        }  
     })
+})
 
 newRound.addEventListener("click", resetBoard)
 
