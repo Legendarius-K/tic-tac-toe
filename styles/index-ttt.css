@@ -54,7 +54,7 @@ h1 {
 }
 
 .score-area {
-    width: 35%;
+    width: 38%;
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -82,7 +82,13 @@ h1 {
     background-size: cover;
 }
 
-
+.new-round {
+    font-family: "Presstart";
+    color: var(--main-color);
+    background-color: var(--backish-color);
+    border: solid var(--main-color) 5px;
+    width: 180px;
+}
 
 
 
