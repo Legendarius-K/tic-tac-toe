@@ -72,12 +72,18 @@ h1 {
     margin: 15px;
 }
 
-.cross {
+.skull {
     background-image: url(../images/skull.svg);
     background-size: cover;
 }
 
-.circle {
+.smiley {
     background-image: url(../images/smiley.svg);
     background-size: cover;
 }
+
+
+
+
+
+

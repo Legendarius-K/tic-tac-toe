@@ -54,6 +54,47 @@ different color themes
         // }
     
 // }
+
+// if (a1.classList.contains("circle") && a2.classList.contains("circle") && a3.classList.contains("circle")) {
+        //    result.textContent = "Human wins!";
+        // } else if (b1.classList.contains("circle") && b2.classList.contains("circle") && b3.classList.contains("circle")) {
+        //     result.textContent = "Human wins!";
+        // } else if (c1.classList.contains("circle") && c2.classList.contains("circle") && c3.classList.contains("circle")) {
+        //     result.textContent = "Human wins!";
+        // } else if (a1.classList.contains("circle") && b1.classList.contains("circle") && c1.classList.contains("circle")) {
+        //     result.textContent = "Human wins!";
+        // } else if (a2.classList.contains("circle") && b2.classList.contains("circle") && c2.classList.contains("circle")) {
+        //     result.textContent = "Human wins!";
+        // } else if (a3.classList.contains("circle") && b3.classList.contains("circle") && c3.classList.contains("circle")) {
+        //     result.textContent = "Human wins!";
+        // } else if (a1.classList.contains("circle") && b2.classList.contains("circle") && c3.classList.contains("circle")) {
+        //     result.textContent = "Human wins!";
+        // } else if (a3.classList.contains("circle") && b2.classList.contains("circle") && c1.classList.contains("circle")) {
+        //     result.textContent = "Human wins!";
+        // } else if (a1.classList.contains("cross") && a2.classList.contains("cross") && a3.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } else if (b1.classList.contains("cross") && b2.classList.contains("cross") && b3.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } else if (c1.classList.contains("cross") && c2.classList.contains("cross") && c3.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } else if (a1.classList.contains("cross") && b1.classList.contains("cross") && c1.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } else if (a2.classList.contains("cross") && b2.classList.contains("cross") && c2.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } else if (a3.classList.contains("cross") && b3.classList.contains("cross") && c3.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } else if (a1.classList.contains("cross") && b2.classList.contains("cross") && c3.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } else if (a3.classList.contains("cross") && b2.classList.contains("cross") && c1.classList.contains("cross")) {
+        //     result.textContent = "Computer wins!";
+        // } 
+
+
+
+
+
+
+
 let boxes = Array.from(document.querySelectorAll(".click"));
 
 let a1 = document.querySelector(".a1");
@@ -70,64 +111,85 @@ let result = document.querySelector(".result");
 
 let ticCounter = 0;
 let clicked = false;
+let player1Round = true;
 
+const checkWinner = symbol => {
+    if (a1.classList.contains(symbol) && a2.classList.contains(symbol) && a3.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else if (b1.classList.contains(symbol) && b2.classList.contains(symbol) && b3.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else if (c1.classList.contains(symbol) && c2.classList.contains(symbol) && c3.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else if (a1.classList.contains(symbol) && b1.classList.contains(symbol) && c1.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else if (a2.classList.contains(symbol) && b2.classList.contains(symbol) && c2.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else if (a3.classList.contains(symbol) && b3.classList.contains(symbol) && c3.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else if (a1.classList.contains(symbol) && b2.classList.contains(symbol) && c3.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else if (a3.classList.contains(symbol) && b2.classList.contains(symbol) && c1.classList.contains(symbol)) {
+        result.textContent = `${symbol} wins!`.toUpperCase();
+    } else {
+        // result.textContent = "It's a TIE!";
+    }
+
+    if (result.textContent === `${symbol} wins!`) {
+        boxes.forEach(box = box => {
+            box.disabled = true;
+        })
+    }
+
+    if (result.textContent === `smiley wins!`) {
+        boxes.forEach(box = box => {
+            box.disabled = true;
+        })
+    }
+
+} 
+
+const smileyClick = (e, box) => {
+    e.target.classList.add("smiley")
+    e.target.classList.remove("click")
+    box.disabled = true;
+    clicked = true;
+
+    checkWinner("smiley");
+
+    const boxes = Array.from(document.querySelectorAll(".click"));
+
+    player1Round = false;
+}
+
+const skullClick = (e, box) => {
+    e.target.classList.add("skull")
+    e.target.classList.remove("click")
+    box.disabled = true;
+    clicked = true;
+
+    checkWinner("skull");
+
+    const boxes = Array.from(document.querySelectorAll(".click"));
+
+    player1Round = true;
+}
 
 boxes.forEach(box => {
 
     box.addEventListener("click", e => {
-        
-        
-        e.target.classList.add("circle")
-        e.target.classList.remove("click")
-        box.disabled = true;
-        clicked = true;
-
-        const boxes = Array.from(document.querySelectorAll(".click"));
-
-        setTimeout(function() {
-            if (clicked === true) {
-                let computerChoice = boxes[Math.floor(Math.random() * boxes.length)];
-                computerChoice.classList.add("cross")
-                computerChoice.classList.remove("click")
-                computerChoice.disabled = true;
-            }
-        }, 600);
-
-        if (a1.classList.contains("circle") && a2.classList.contains("circle") && a3.classList.contains("circle")) {
-           result.textContent = "Human wins!";
-        } else if (b1.classList.contains("circle") && b2.classList.contains("circle") && b3.classList.contains("circle")) {
-            result.textContent = "Human wins!";
-        } else if (c1.classList.contains("circle") && c2.classList.contains("circle") && c3.classList.contains("circle")) {
-            result.textContent = "Human wins!";
-        } else if (a1.classList.contains("circle") && b1.classList.contains("circle") && c1.classList.contains("circle")) {
-            result.textContent = "Human wins!";
-        } else if (a2.classList.contains("circle") && b2.classList.contains("circle") && c2.classList.contains("circle")) {
-            result.textContent = "Human wins!";
-        } else if (a3.classList.contains("circle") && b3.classList.contains("circle") && c3.classList.contains("circle")) {
-            result.textContent = "Human wins!";
-        } else if (a1.classList.contains("circle") && b2.classList.contains("circle") && c3.classList.contains("circle")) {
-            result.textContent = "Human wins!";
-        } else if (a3.classList.contains("circle") && b2.classList.contains("circle") && c1.classList.contains("circle")) {
-            result.textContent = "Human wins!";
-        } else if (a1.classList.contains("cross") && a2.classList.contains("cross") && a3.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        } else if (b1.classList.contains("cross") && b2.classList.contains("cross") && b3.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        } else if (c1.classList.contains("cross") && c2.classList.contains("cross") && c3.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        } else if (a1.classList.contains("cross") && b1.classList.contains("cross") && c1.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        } else if (a2.classList.contains("cross") && b2.classList.contains("cross") && c2.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        } else if (a3.classList.contains("cross") && b3.classList.contains("cross") && c3.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        } else if (a1.classList.contains("cross") && b2.classList.contains("cross") && c3.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        } else if (a3.classList.contains("cross") && b2.classList.contains("cross") && c1.classList.contains("cross")) {
-            result.textContent = "Computer wins!";
-        }   
+        if (player1Round === true) {
+            smileyClick(e, box);
+        } else if (player1Round === false) {
+            skullClick(e, box);
+        }
+              
     })
 })
+
+
+
+
+
 
 
 
