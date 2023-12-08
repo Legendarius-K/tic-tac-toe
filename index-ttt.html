@@ -4,25 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="index-ttt.css">
+    <link rel="stylesheet" href="./styles/index-ttt.css">
     <link rel="stylesheet" href="typography/typography.css">
     <script src="index-ttt.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Tic Tac Toe</h1>
+        <h3 class="player-one symbol">Human = Circle</h2>
+        <h3 class="player-two symbol">Computer = Cross</h2>
+        <div class="result"></div>
     </header>
     <div class="main-content">
         <section class="play-area">
-            <div class="box a1"></div>
-            <div class="box a2"></div>
-            <div class="box a3"></div>
-            <div class="box b1"></div>
-            <div class="box b2"></div>
-            <div class="box b3"></div>
-            <div class="box c1"></div>
-            <div class="box c2"></div>
-            <div class="box c3"></div>
+            <button class="box click a1"></button>
+            <button class="box click a2"></button>
+            <button class="box click a3"></button>
+            <button class="box click b1"></button>
+            <button class="box click b2"></button>
+            <button class="box click b3"></button>
+            <button class="box click c1"></button>
+            <button class="box click c2"></button>
+            <button class="box click c3"></button>
+        </section>
+        <section class="score-area">
+            <div class="player">
+                <div class="user">Human</div>
+                <div class="tie">Tie</div>
+                <div class="comp">Computer</div>
+            </div>
+            <div class="player-score">
+                <div class="user-score">0</div>
+                <div class="tie-score">0</div>
+                <div class="comp-score">0</div>
+            </div>    
         </section>
     </div>    
 </body>
