@@ -112,7 +112,8 @@ let player1Count = 0;
 let player2Count = 0;
 let player1Score = document.querySelector(".player-1-score");
 let player2Score = document.querySelector(".player-2-score");
-
+player1Score.textContent = player1Count;
+player2Score.textContent = player2Count; 
 
 
 let result = document.querySelector(".result");
@@ -123,7 +124,24 @@ let ticCounter = 0;
 let clicked = false;
 let player1Round = true;
 
-const checkWinner = symbol => {
+const disableButtons = () => {
+    if (result.textContent.includes("WINS!")) {
+        boxes.forEach(box = box => {
+            box.disabled = true;
+        })
+    }
+}
+
+let counter = () => {
+    if (result.textContent.includes("SMILEY WINS!")) {
+        player1Count++;
+    } else if (result.textContent.includes("SKULL WINS!")) {
+        player2Count++;
+    }
+    
+}
+
+const checkWinner = (symbol, callback) => {
     if (a1.classList.contains(symbol) && a2.classList.contains(symbol) && a3.classList.contains(symbol)) {
         result.textContent = `${symbol} wins!`.toUpperCase();
     } else if (b1.classList.contains(symbol) && b2.classList.contains(symbol) && b3.classList.contains(symbol)) {
@@ -144,29 +162,21 @@ const checkWinner = symbol => {
         // result.textContent = "It's a TIE!";
     }
 
-    if (result.textContent === `${symbol} wins!`) {
-        boxes.forEach(box = box => {
-            box.disabled = true;
-        })
-    }
-
-    // if (result.textContent === `smiley wins!`) {
-    //     player1Count++;
-    //     player1Score.innerHTML = player1Count;
-    // }
+    
+    callback();
+    
 
 } 
+
+
 
 const smileyClick = (e, box) => {
     e.target.classList.add("smiley")
     e.target.classList.remove("click")
     box.disabled = true;
     clicked = true;
-
-    checkWinner("smiley");
-
+    checkWinner("smiley", disableButtons);
     const boxes = Array.from(document.querySelectorAll(".click"));
-
     player1Round = false;
 }
 
@@ -175,11 +185,8 @@ const skullClick = (e, box) => {
     e.target.classList.remove("click")
     box.disabled = true;
     clicked = true;
-
-    checkWinner("skull");
-
+    checkWinner("skull", disableButtons);
     const boxes = Array.from(document.querySelectorAll(".click"));
-
     player1Round = true;
 }
 
@@ -189,15 +196,12 @@ boxes.forEach(box => {
         if (player1Round === true) {
             smileyClick(e, box);
         } else if (player1Round === false) {
-            skullClick(e, box);
+            skullClick(e, box); 
         }
-
         
-        // player2Score.textContent = player2Count;    
-              
+        
     })
 })
-
 
 
 
