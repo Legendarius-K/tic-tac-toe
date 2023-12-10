@@ -44,12 +44,13 @@ h1 {
     width: 35%;
     aspect-ratio: 1/1;
     align-content: center;
+    position: relative;
 }
 
 .box {
     border: solid 5px var(--main-color);
     display: inline;
-    padding: 30px;
+    /* padding: 30px; */
     background-color: var(--backish-color);
     transition: 200ms;
 }
@@ -71,6 +72,14 @@ h1 {
     display: flex;
     justify-content: space-around;
     margin: 15px;
+}
+
+.smiley-score {
+    color: green;
+}
+
+.skull-score {
+    color: red;
 }
 
 .skull {
@@ -100,6 +109,11 @@ h1 {
 }
 
 .result {
-    font-size: 2rem;
+    font-size: 9vw;
+    position: absolute;
+    color: rgb(255, 230, 0);
+    left: 50%;
+    transform: translate(-50%, 25%);
+    text-align: center;
 }
 
