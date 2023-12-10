@@ -137,6 +137,7 @@ const resetBoard = () => {
     })    
     result.textContent = "";
     player1Start = !player1Start;
+    player1Round = player1Start; 
 }
 
 
@@ -155,38 +156,31 @@ let counter = () => {
     } else if (result.textContent.includes("SKULL WINS!")) {
         player2Count++;
         player2Score.textContent = player2Count;
-    }
-    
+    }   
 }
 
 const checkWinner = (symbol, callback, callback2) => {
-    if (a1.classList.contains(symbol) && a2.classList.contains(symbol) && a3.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else if (b1.classList.contains(symbol) && b2.classList.contains(symbol) && b3.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else if (c1.classList.contains(symbol) && c2.classList.contains(symbol) && c3.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else if (a1.classList.contains(symbol) && b1.classList.contains(symbol) && c1.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else if (a2.classList.contains(symbol) && b2.classList.contains(symbol) && c2.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else if (a3.classList.contains(symbol) && b3.classList.contains(symbol) && c3.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else if (a1.classList.contains(symbol) && b2.classList.contains(symbol) && c3.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else if (a3.classList.contains(symbol) && b2.classList.contains(symbol) && c1.classList.contains(symbol)) {
-        result.textContent = `${symbol} wins!`.toUpperCase();
-    } else {
-        // result.textContent = "It's a TIE!";
+
+    const winConditions = [
+      [a1, a2, a3],
+      [b1, b2, b3],
+      [c1, c2, c3],
+      [a1, b1, c1],
+      [a2, b2, c2],
+      [a3, b3, c3],
+      [a1, b2, c3],
+      [a3, b2, c1],
+    ];
+  
+    for (const condition of winConditions) {
+        if (condition.every(box => box.classList.contains(symbol))) {      
+            result.textContent = `${symbol} wins!`.toUpperCase();
+        }
     }
-
     
-    
-
     callback()
     callback2();
     
-
 } 
 
 
