@@ -59,7 +59,12 @@ different color themes
 
 
 
-
+const smileySound = new Audio("./sound/smiley.mp3");
+smileySound.load();
+const skullSound = new Audio("./sound/skull.mp3");
+skullSound.load();
+const crowdSound = new Audio("./sound/crowd.mp3");
+crowdSound.load();
 
 let boxes = Array.from(document.querySelectorAll(".click"));
 
@@ -90,14 +95,6 @@ if (player1Start === true) {
 } else {
     player1Round = false; 
 }
-
-// if (player1Round === true) {
-//     smileyTurn.classList.add("turn-active");
-//     skullTurn.classList.remove("turn-active");
-// } else {
-//     skullTurn.classList.add("turn-active");
-//     smileyTurn.classList.remove("turn-active");
-// }
 
 let displayConfetti = true;
 
@@ -190,6 +187,7 @@ const checkWinner = (symbol, callback, callback2) => {
     for (const condition of winConditions) {
         if (condition.every(box => box.classList.contains(symbol))) {      
             result.textContent = `${symbol} wins!`.toUpperCase();
+            crowdSound.play();
             displayConfetti = true;
             confettiRain();
         }
@@ -199,6 +197,7 @@ const checkWinner = (symbol, callback, callback2) => {
 } 
 
 const smileyClick = (e, box) => {
+    smileySound.play();
     e.target.classList.add("smiley")
     e.target.classList.remove("click")
     box.disabled = true;
@@ -210,6 +209,7 @@ const smileyClick = (e, box) => {
 }
 
 const skullClick = (e, box) => {
+    skullSound.play();
     e.target.classList.add("skull")
     e.target.classList.remove("click")
     box.disabled = true;
