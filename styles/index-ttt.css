@@ -31,7 +31,7 @@ header {
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     margin: 20px 0 0 0;
     
 }
@@ -99,7 +99,7 @@ h1 {
 .player-score {
     display: flex;
     justify-content: space-around;
-    margin: 15px;
+    /* margin: 5px; */
     font-size: 2rem;
 }
 
@@ -128,7 +128,7 @@ h1 {
     border: solid var(--main-color) 5px;
     width: 180px;
     height: 40px;
-    margin: 2%;
+    /* margin: 2%; */
     transition: 200ms;
 }
 
