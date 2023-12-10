@@ -106,20 +106,15 @@ let b3 = document.querySelector(".b3");
 let c1 = document.querySelector(".c1");
 let c2 = document.querySelector(".c2");
 let c3 = document.querySelector(".c3");
-
-
-
 let player1Count = 0;
 let player2Count = 0;
-let player1Score = document.querySelector(".player-1-score");
-let player2Score = document.querySelector(".player-2-score");
-
+let player1Score = document.querySelector(".smiley-score");
+let player2Score = document.querySelector(".skull-score");
 let result = document.querySelector(".result");
 let newRound = document.querySelector(".new-round");
 
 let player1Start = true;
 let player1Round = true;
-
 if (player1Start === true) {
     player1Round = true;
 } else {
