@@ -11,10 +11,13 @@
 <body>
     <header>
         <h1>Tic Tac Toe</h1>
-        <h5 class="player-one symbol">Player 1 = SMILEY</h2>
-        <h5 class="player-two symbol">Player 2 = SKULL</h2>
     </header>
     <div class="main-content">
+        <div class="turn-area">
+            <p class="turn">Turn:</p>
+            <img class="smiley-turn" src="./images/smileygreen.svg" alt="Smiley" height="50px" width="50px">
+            <img class="skull-turn" src="./images/skullred.svg" alt="Smiley" height="50px" width="50px">
+        </div>
         <section class="play-area">
             <button class="box a1 click"></button>
             <button class="box a2 click"></button>
@@ -30,17 +33,16 @@
         <section class="score-area">
             <div class="player">
                 <div class="player-1">Smiley</div>
-                <!-- <div class="tie">Tie</div> -->
                 <div class="player-2">Skull</div>
             </div>
             <div class="player-score">
                 <div class="smiley-score">0</div>
-                <!-- <div class="tie-score">0</div> -->
                 <div class="skull-score">0</div>
             </div>    
         </section>
         <button class="new-round">New Round</button>
-    </div>    
+    </div>  
+    <div id="confetti-wrapper"></div>     
 </body>
 </html>
 

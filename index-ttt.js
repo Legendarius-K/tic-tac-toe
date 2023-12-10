@@ -55,40 +55,6 @@ different color themes
     
 // }
 
-// if (a1.classList.contains("circle") && a2.classList.contains("circle") && a3.classList.contains("circle")) {
-        //    result.textContent = "Human wins!";
-        // } else if (b1.classList.contains("circle") && b2.classList.contains("circle") && b3.classList.contains("circle")) {
-        //     result.textContent = "Human wins!";
-        // } else if (c1.classList.contains("circle") && c2.classList.contains("circle") && c3.classList.contains("circle")) {
-        //     result.textContent = "Human wins!";
-        // } else if (a1.classList.contains("circle") && b1.classList.contains("circle") && c1.classList.contains("circle")) {
-        //     result.textContent = "Human wins!";
-        // } else if (a2.classList.contains("circle") && b2.classList.contains("circle") && c2.classList.contains("circle")) {
-        //     result.textContent = "Human wins!";
-        // } else if (a3.classList.contains("circle") && b3.classList.contains("circle") && c3.classList.contains("circle")) {
-        //     result.textContent = "Human wins!";
-        // } else if (a1.classList.contains("circle") && b2.classList.contains("circle") && c3.classList.contains("circle")) {
-        //     result.textContent = "Human wins!";
-        // } else if (a3.classList.contains("circle") && b2.classList.contains("circle") && c1.classList.contains("circle")) {
-        //     result.textContent = "Human wins!";
-        // } else if (a1.classList.contains("cross") && a2.classList.contains("cross") && a3.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } else if (b1.classList.contains("cross") && b2.classList.contains("cross") && b3.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } else if (c1.classList.contains("cross") && c2.classList.contains("cross") && c3.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } else if (a1.classList.contains("cross") && b1.classList.contains("cross") && c1.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } else if (a2.classList.contains("cross") && b2.classList.contains("cross") && c2.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } else if (a3.classList.contains("cross") && b3.classList.contains("cross") && c3.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } else if (a1.classList.contains("cross") && b2.classList.contains("cross") && c3.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } else if (a3.classList.contains("cross") && b2.classList.contains("cross") && c1.classList.contains("cross")) {
-        //     result.textContent = "Computer wins!";
-        // } 
-
 
 
 
@@ -112,15 +78,57 @@ let player1Score = document.querySelector(".smiley-score");
 let player2Score = document.querySelector(".skull-score");
 let result = document.querySelector(".result");
 let newRound = document.querySelector(".new-round");
+let smileyTurn = document.querySelector(".smiley-turn");
+let skullTurn = document.querySelector(".skull-turn");
 
 let player1Start = true;
 let player1Round = true;
+
 if (player1Start === true) {
     player1Round = true;
+    smileyTurn.classList.add("turn-active"); 
 } else {
-    player1Round = false;
+    player1Round = false; 
 }
 
+// if (player1Round === true) {
+//     smileyTurn.classList.add("turn-active");
+//     skullTurn.classList.remove("turn-active");
+// } else {
+//     skullTurn.classList.add("turn-active");
+//     smileyTurn.classList.remove("turn-active");
+// }
+
+let displayConfetti = true;
+
+const confettiRain = () => {
+    if (!displayConfetti) {
+        return;  
+    } else {
+        for(i=0; i<100; i++) {
+
+            var randomRotation = Math.floor(Math.random() * 360);
+            var randomScale = Math.random() * 1;
+            var randomWidth = Math.floor(Math.random() * Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
+            var randomHeight =  Math.floor(Math.random() * Math.max(document.documentElement.clientHeight, window.innerHeight || 500));
+            
+            var randomAnimationDelay = Math.floor(Math.random() * 15);
+                
+            var colors = ['#0CD977', '#FF1C1C', '#FF93DE', '#5767ED', '#FFC61C', '#8497B0']
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+            var confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.top=randomHeight + 'px';
+            confetti.style.right=randomWidth + 'px';
+            confetti.style.backgroundColor=randomColor;
+            confetti.style.obacity=randomScale;
+            confetti.style.transform='skew(15deg) rotate(' + randomRotation + 'deg)';
+            confetti.style.animationDelay=randomAnimationDelay + 's';
+            document.getElementById("confetti-wrapper").appendChild(confetti);
+        }
+    }
+}
 
 const resetBoard = () => {
     boxes.forEach(box => {
@@ -133,8 +141,20 @@ const resetBoard = () => {
     result.textContent = "";
     player1Start = !player1Start;
     player1Round = player1Start; 
-}
+    displayConfetti = false;
 
+    const confettiWrapper = document.getElementById("confetti-wrapper");
+    while (confettiWrapper.firstChild) {
+        confettiWrapper.removeChild(confettiWrapper.firstChild);
+    }   
+    if (player1Round === true) {
+        smileyTurn.classList.add("turn-active");
+        skullTurn.classList.remove("turn-active");
+    } else {
+        skullTurn.classList.add("turn-active");
+        smileyTurn.classList.remove("turn-active");
+    }
+}
 
 const disableButtons = () => {
     if (result.textContent.includes("WINS!")) {
@@ -170,15 +190,13 @@ const checkWinner = (symbol, callback, callback2) => {
     for (const condition of winConditions) {
         if (condition.every(box => box.classList.contains(symbol))) {      
             result.textContent = `${symbol} wins!`.toUpperCase();
+            displayConfetti = true;
+            confettiRain();
         }
-    }
-    
+    }   
     callback()
-    callback2();
-    
+    callback2();   
 } 
-
-
 
 const smileyClick = (e, box) => {
     e.target.classList.add("smiley")
@@ -187,6 +205,8 @@ const smileyClick = (e, box) => {
     checkWinner("smiley", counter, disableButtons);
     const boxes = Array.from(document.querySelectorAll(".click"));
     player1Round = false;
+    skullTurn.classList.add("turn-active");
+    smileyTurn.classList.remove("turn-active");
 }
 
 const skullClick = (e, box) => {
@@ -196,9 +216,9 @@ const skullClick = (e, box) => {
     checkWinner("skull", counter, disableButtons);
     const boxes = Array.from(document.querySelectorAll(".click"));
     player1Round = true;
+    smileyTurn.classList.add("turn-active");
+    skullTurn.classList.remove("turn-active");
 }
-
-
 
 boxes.forEach(box => {
 
@@ -212,8 +232,6 @@ boxes.forEach(box => {
 })
 
 newRound.addEventListener("click", resetBoard)
-
-
 
 
 
