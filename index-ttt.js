@@ -1,61 +1,4 @@
-/*
-1. Human starts 
-2. When clicking a box it gets the "circle" class
-3. Computer then clicks random box and adds "cross" class (randomize through an array of boxes)
-4. ??? When box gets filled. Set "cross"/"circle" and "tie" to "true". ???
-5. Write logic: If circle true gets 3 in a row human wins,and vice versa
-6. If "tie" gets to 9 it's a tie and the game starts over.
-
-add music and sound fx
-different color themes
-2 players?
-
-*/
-
-
-
-// const computerMove = () => {
-//     boxes = Array.from(document.querySelectorAll(".click"));
-//     let computerChoice = boxes[Math.floor(Math.random() * boxes.length)];
-//     computerChoice.classList.add("cross");
-//     computerChoice.classList.remove("click");
-//     clicked = true;
-// }
-
-// boxes.forEach(box => {
-
-//     box.addEventListener("click", e => {
-//         clicked = false;
-//         let computerChoice = boxes[Math.floor(Math.random() * boxes.length)];
-//         computerChoice.classList.add("cross");
-//         computerChoice.classList.remove("click");
-//         clicked = true;
-//         ticCounter++;
-
-//         if (clicked === true) {
-//             e.target.classList.add("circle");
-//             e.target.classList.remove("click");      
-//             ticCounter++;  
-//             console.log(boxes);  
-//             boxes = Array.from(document.querySelectorAll(".click"));  
-//         }      
-//     })
-// })
-
-// while (clicked === false) {
-   
-
-    // if (clicked) {
-            
-            
-    // }
-        // if (Array.from(box.classList).includes("circle")) {
-        //     clicked = false;
-        // }
-    
-// }
-
-
+let sound = true;
 
 
 
@@ -65,6 +8,8 @@ const skullSound = new Audio("./sound/skull.mp3");
 skullSound.load();
 const crowdSound = new Audio("./sound/crowd.mp3");
 crowdSound.load();
+const newRoundSound = new Audio("./sound/newround.mp3");
+newRoundSound.load();
 
 let boxes = Array.from(document.querySelectorAll(".click"));
 
@@ -83,8 +28,11 @@ let player1Score = document.querySelector(".smiley-score");
 let player2Score = document.querySelector(".skull-score");
 let result = document.querySelector(".result");
 let newRound = document.querySelector(".new-round");
+let newGame = document.querySelector(".new-game");
 let smileyTurn = document.querySelector(".smiley-turn");
 let skullTurn = document.querySelector(".skull-turn");
+let soundOn = document.querySelector(".sound-on");
+let soundOff = document.querySelector(".sound-off");
 
 let player1Start = true;
 let player1Round = true;
@@ -128,6 +76,10 @@ const confettiRain = () => {
 }
 
 const resetBoard = () => {
+    if (sound === true) {
+        newRoundSound.play();
+    }
+   
     boxes.forEach(box => {
         box.disabled = false;
         box.classList.remove("smiley");
@@ -187,9 +139,11 @@ const checkWinner = (symbol, callback, callback2) => {
     for (const condition of winConditions) {
         if (condition.every(box => box.classList.contains(symbol))) {      
             result.textContent = `${symbol} wins!`.toUpperCase();
-            crowdSound.play();
             displayConfetti = true;
             confettiRain();
+            if (sound === true) {
+                crowdSound.play();
+            }
         }
     }   
     callback()
@@ -197,7 +151,9 @@ const checkWinner = (symbol, callback, callback2) => {
 } 
 
 const smileyClick = (e, box) => {
-    smileySound.play();
+    if (sound === true) {
+        smileySound.play();
+    }
     e.target.classList.add("smiley")
     e.target.classList.remove("click")
     box.disabled = true;
@@ -209,7 +165,9 @@ const smileyClick = (e, box) => {
 }
 
 const skullClick = (e, box) => {
-    skullSound.play();
+    if (sound === true) {
+        skullSound.play();
+    }
     e.target.classList.add("skull")
     e.target.classList.remove("click")
     box.disabled = true;
@@ -232,9 +190,27 @@ boxes.forEach(box => {
 })
 
 newRound.addEventListener("click", resetBoard)
+newGame.addEventListener("click", () => {
+    resetBoard();
+    player1Count = 0;
+    player1Score.textContent = player1Count;
+    player2Count = 0;
+    player2Score.textContent = player2Count;
+});
 
+soundOn.addEventListener("click", () => {
+    soundOff.classList.add("active")
+    soundOn.classList.remove("active")
 
+    sound = !sound;
+})
 
+soundOff.addEventListener("click", () => {
+    soundOn.classList.add("active")
+    soundOff.classList.remove("active")
+    sound = !sound;
+
+})
 
 
 

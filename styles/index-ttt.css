@@ -121,18 +121,26 @@ h1 {
     background-size: cover;
 }
 
-.new-round {
+.button {
     font-family: "Presstart";
     color: var(--main-color);
     background-color: var(--backish-color);
     border: solid var(--main-color) 5px;
-    width: 180px;
-    height: 40px;
-    /* margin: 2%; */
     transition: 200ms;
 }
 
-.new-round:hover, .box:hover {
+.new-round {
+    width: 200px;
+    height: 35px; 
+}
+
+.new-game {
+    margin: 35px;
+    width: 130px;
+    height: 35px;
+}
+
+.button:hover, .box:hover {
     background-color: var(--main-color);
     color: var(--backish-color);
 }
@@ -144,6 +152,22 @@ h1 {
     left: 50%;
     transform: translate(-50%, 25%);
     text-align: center;
+}
+
+.sound-on {
+    height: 35px;
+    width: auto;
+    display: none;
+}
+
+.sound-off {
+    height: 37px;
+    width: auto;
+    display: none;
+}
+
+.active {
+    display: unset;
 }
 
 
@@ -172,10 +196,9 @@ h1 {
 }
   
 #confetti-wrapper {
-    overflow: hidden !important;
+    /* overflow: hidden !important; */
 }
   
-
 
 @media screen and (max-width: 1024px) {
 
@@ -199,6 +222,16 @@ h1 {
     .turn-area {
         margin: 3%;
     }
+
+    .result {
+        font-size: 12vw;
+        transform: translate(-50%, 35%);
+    }
+    
+    .button:hover, .box:hover {
+        background-color: unset;
+        color: unset;
+    }
 }
 
 @media screen and (max-width: 430px) {
@@ -217,5 +250,10 @@ h1 {
 
     .player {
         font-size: 1.1rem;
+    }
+
+    .result {
+        font-size: 14vw;
+        transform: translate(-50%, 55%);
     }
 }
