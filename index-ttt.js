@@ -135,20 +135,29 @@ const checkWinner = (symbol, callback, callback2) => {
       [a1, b2, c3],
       [a3, b2, c1],
     ];
+
+    let winnerFound = false;
   
     for (const condition of winConditions) {
         if (condition.every(box => box.classList.contains(symbol))) {      
             result.textContent = `${symbol} wins!`.toUpperCase();
             displayConfetti = true;
             confettiRain();
+            winnerFound = true;
             if (sound === true) {
                 crowdSound.play();
             }
         }
     }   
+
+    if (!winnerFound && boxes.every(box => box.disabled === true)) {
+        result.textContent = "It's a Tie!".toUpperCase();
+    }
+
     callback()
     callback2();   
 } 
+
 
 const smileyClick = (e, box) => {
     if (sound === true) {
