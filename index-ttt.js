@@ -2,13 +2,13 @@ let sound = true;
 
 
 
-const smileySound = new Audio("./sound/smiley.mp3");
+const smileySound = new Audio("./audio/smiley.mp3");
 smileySound.load();
-const skullSound = new Audio("./sound/skull.mp3");
+const skullSound = new Audio("./audio/skull.mp3");
 skullSound.load();
-const crowdSound = new Audio("./sound/crowd.mp3");
+const crowdSound = new Audio("./audio/crowd.mp3");
 crowdSound.load();
-const newRoundSound = new Audio("./sound/newround.mp3");
+const newRoundSound = new Audio("./audio/newround.mp3");
 newRoundSound.load();
 
 let boxes = Array.from(document.querySelectorAll(".click"));
