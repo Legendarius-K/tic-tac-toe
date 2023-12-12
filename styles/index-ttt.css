@@ -32,8 +32,7 @@ header {
 
 h1 {
     font-size: 2.8rem;
-    margin: 20px 0 0 0;
-    
+    margin: 20px 0 0 0;   
 }
 
 .main-content{
@@ -77,7 +76,6 @@ h1 {
 
 .box {
     border: solid 5px var(--main-color);
-    /* display: inline; */
     background-color: var(--backish-color);
     transition: 200ms;
 }
@@ -99,7 +97,6 @@ h1 {
 .player-score {
     display: flex;
     justify-content: space-around;
-    /* margin: 5px; */
     font-size: 2rem;
 }
 
@@ -169,7 +166,7 @@ h1 {
 }
 
 .sound-off {
-    height: 37px;
+    height: 35px;
     width: auto;
     display: none;
 }
@@ -182,6 +179,7 @@ h1 {
 
 .active:hover {
     height: 40px;
+    margin: 12.5px;
     width: auto;
 }
   
@@ -209,7 +207,7 @@ h1 {
 }
   
 #confetti-wrapper {
-    /* overflow: hidden !important; */
+    overflow: hidden;
 }
   
 

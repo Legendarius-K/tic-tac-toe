@@ -1,7 +1,4 @@
 let sound = true;
-
-
-
 const smileySound = new Audio("./audio/smiley.mp3");
 smileySound.load();
 const skullSound = new Audio("./audio/skull.mp3");
@@ -15,8 +12,7 @@ tieSound.load();
 const newGameSound = new Audio("./audio/newgame2.mp3");
 newGameSound.load();
 
-let boxes = Array.from(document.querySelectorAll(".click"));
-
+let boxes = Array.from(document.querySelectorAll(".box"));
 let a1 = document.querySelector(".a1");
 let a2 = document.querySelector(".a2");
 let a3 = document.querySelector(".a3");
@@ -40,7 +36,6 @@ let soundOff = document.querySelector(".sound-off");
 
 let player1Start = true;
 let player1Round = true;
-
 if (player1Start === true) {
     player1Round = true;
     smileyTurn.classList.add("turn-active"); 
@@ -49,13 +44,11 @@ if (player1Start === true) {
 }
 
 let displayConfetti = true;
-
 const confettiRain = () => {
     if (!displayConfetti) {
         return;  
     } else {
         for(i=0; i<100; i++) {
-
             var randomRotation = Math.floor(Math.random() * 360);
             var randomScale = Math.random() * 1;
             var randomWidth = Math.floor(Math.random() * Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
@@ -157,21 +150,17 @@ const checkWinner = (symbol, callback, callback2) => {
             tieSound.play();
         }
     }
-
     callback()
     callback2();   
 } 
-
 
 const smileyClick = (e, box) => {
     if (sound === true) {
         smileySound.play();
     }
     e.target.classList.add("smiley")
-    e.target.classList.remove("click")
     box.disabled = true;
     checkWinner("smiley", counter, disableButtons);
-    const boxes = Array.from(document.querySelectorAll(".click"));
     player1Round = false;
     skullTurn.classList.add("turn-active");
     smileyTurn.classList.remove("turn-active");
@@ -182,10 +171,8 @@ const skullClick = (e, box) => {
         skullSound.play();
     }
     e.target.classList.add("skull")
-    e.target.classList.remove("click")
     box.disabled = true;
     checkWinner("skull", counter, disableButtons);
-    const boxes = Array.from(document.querySelectorAll(".click"));
     player1Round = true;
     smileyTurn.classList.add("turn-active");
     skullTurn.classList.remove("turn-active");
@@ -223,7 +210,6 @@ newGame.addEventListener("click", () => {
 soundOn.addEventListener("click", () => {
     soundOff.classList.add("active")
     soundOn.classList.remove("active")
-
     sound = !sound;
 })
 
@@ -233,9 +219,3 @@ soundOff.addEventListener("click", () => {
     sound = !sound;
 
 })
-
-
-
-
-
-
