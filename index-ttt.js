@@ -10,6 +10,10 @@ const crowdSound = new Audio("./audio/crowd.mp3");
 crowdSound.load();
 const newRoundSound = new Audio("./audio/newround.mp3");
 newRoundSound.load();
+const tieSound = new Audio("./audio/tie.mp3");
+tieSound.load();
+const newGameSound = new Audio("./audio/newgame2.mp3");
+newGameSound.load();
 
 let boxes = Array.from(document.querySelectorAll(".click"));
 
@@ -76,9 +80,6 @@ const confettiRain = () => {
 }
 
 const resetBoard = () => {
-    if (sound === true) {
-        newRoundSound.play();
-    }
    
     boxes.forEach(box => {
         box.disabled = false;
@@ -152,6 +153,9 @@ const checkWinner = (symbol, callback, callback2) => {
 
     if (!winnerFound && boxes.every(box => box.disabled === true)) {
         result.textContent = "It's a Tie!".toUpperCase();
+        if (sound === true) {
+            tieSound.play();
+        }
     }
 
     callback()
@@ -198,8 +202,17 @@ boxes.forEach(box => {
     })
 })
 
-newRound.addEventListener("click", resetBoard)
+newRound.addEventListener("click", () => {
+    if (sound === true) {
+        newRoundSound.play();
+    }
+    resetBoard();
+})
+
 newGame.addEventListener("click", () => {
+    if (sound === true) {
+        newGameSound.play();
+    }
     resetBoard();
     player1Count = 0;
     player1Score.textContent = player1Count;
