@@ -1,16 +1,29 @@
 let sound = true;
+// const smileySound = new Audio("./audio/smiley.mp3");
+// smileySound.load();
+// const skullSound = new Audio("./audio/skull.mp3");
+// skullSound.load();
+// const crowdSound = new Audio("./audio/crowd.mp3");
+// crowdSound.load();
+// const newRoundSound = new Audio("./audio/newround.mp3");
+// newRoundSound.load();
+// const tieSound = new Audio("./audio/tie.mp3");
+// tieSound.load();
+// const newGameSound = new Audio("./audio/newgame2.mp3");
+// newGameSound.load();
+
 const smileySound = new Audio("./audio/smiley.mp3");
-smileySound.load();
+smileySound.preload = "auto";
 const skullSound = new Audio("./audio/skull.mp3");
-skullSound.load();
+skullSound.preload = "auto";
 const crowdSound = new Audio("./audio/crowd.mp3");
-crowdSound.load();
+crowdSound.preload = "auto";
 const newRoundSound = new Audio("./audio/newround.mp3");
-newRoundSound.load();
+newRoundSound.preload = "auto";
 const tieSound = new Audio("./audio/tie.mp3");
-tieSound.load();
+tieSound.preload = "auto";
 const newGameSound = new Audio("./audio/newgame2.mp3");
-newGameSound.load();
+newGameSound.preload = "auto";
 
 let boxes = Array.from(document.querySelectorAll(".box"));
 let a1 = document.querySelector(".a1");
@@ -64,7 +77,7 @@ const confettiRain = () => {
             confetti.style.top=randomHeight + 'px';
             confetti.style.right=randomWidth + 'px';
             confetti.style.backgroundColor=randomColor;
-            confetti.style.obacity=randomScale;
+            
             confetti.style.transform='skew(15deg) rotate(' + randomRotation + 'deg)';
             confetti.style.animationDelay=randomAnimationDelay + 's';
             document.getElementById("confetti-wrapper").appendChild(confetti);
