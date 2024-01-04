@@ -1,17 +1,4 @@
 let sound = true;
-// const smileySound = new Audio("./audio/smiley.mp3");
-// smileySound.load();
-// const skullSound = new Audio("./audio/skull.mp3");
-// skullSound.load();
-// const crowdSound = new Audio("./audio/crowd.mp3");
-// crowdSound.load();
-// const newRoundSound = new Audio("./audio/newround.mp3");
-// newRoundSound.load();
-// const tieSound = new Audio("./audio/tie.mp3");
-// tieSound.load();
-// const newGameSound = new Audio("./audio/newgame2.mp3");
-// newGameSound.load();
-
 const smileySound = new Audio("./audio/smiley.mp3");
 smileySound.preload = "auto";
 const skullSound = new Audio("./audio/skull.mp3");
@@ -91,7 +78,6 @@ const resetBoard = () => {
         box.disabled = false;
         box.classList.remove("smiley");
         box.classList.remove("skull");
-        box.classList.add("click");
         
     })    
     result.textContent = "";
